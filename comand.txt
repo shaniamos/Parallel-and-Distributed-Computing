@@ -1,0 +1,5 @@
+./sequential 
+./sequential matrix.txt
+
+mpiexec -n 2 ./parallel < input.txt 
+mpiexec -n 2 ./parallel < input.txt matrix.txt
