@@ -55,11 +55,11 @@ void findBestOffset(char *main_seq, char *sub_seq, int score_matrix[26][26], int
         {
             if (i < mutant)
             {
-                temp_score += score_matrix[sub_seq[i] - 'A'][main_seq[offset_idx + i] - 'A'];
+                temp_score += score_matrix[main_seq[offset_idx + i] - 'A'][sub_seq[i] - 'A'];
             }
             else
             {
-                temp_score += score_matrix[mutate_char(sub_seq[i]) - 'A'][main_seq[offset_idx + i] - 'A'];
+                temp_score += score_matrix[main_seq[offset_idx + i] - 'A'][mutate_char(sub_seq[i]) - 'A'];
             }
         }
         if (temp_score > *best_score)
@@ -284,4 +284,10 @@ void parallel(int argc, char *argv[], int rank, int num_procs)
     }
     if (rank == 0)
         printf("Time taken: %f\n", MPI_Wtime() - start_time);
+
+    for (int i = 0; i < sub_sequences_count; i++)
+    {
+        free(sub_sequences[i]);
+    }
+    free(sub_sequences);
 }

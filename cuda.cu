@@ -23,11 +23,11 @@ __global__ void findBestOffsetKernel(char *dev_main_seq, char *dev_sub_seq, int 
     {
         if (i < mutant)
         {
-            temp_score += dev_score_matrix[dev_sub_seq[i] - 'A'][dev_main_seq[offset_idx + i] - 'A'];
+            temp_score += dev_score_matrix[dev_main_seq[offset_idx + i] - 'A'][dev_sub_seq[i] - 'A'];
         }
         else
         {
-            temp_score += dev_score_matrix[mutate_char_cuda(dev_sub_seq[i]) - 'A'][dev_main_seq[offset_idx + i] - 'A'];
+            temp_score += dev_score_matrix[dev_main_seq[offset_idx + i] - 'A'][mutate_char_cuda(dev_sub_seq[i]) - 'A'];
         }
     }
     score_array[offset_idx] = temp_score;

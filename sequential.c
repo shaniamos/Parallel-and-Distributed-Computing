@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 
 void readInputFile(char *main_sequence, char ***sub_sequences, int *sub_sequences_count)
 {
-    FILE *file = fopen("input.txt", "r");
+    FILE *file = stdin;
     if (file == NULL)
     {
         printf("Error opening file!\n");
@@ -60,11 +60,11 @@ void findBestScore(char *main_seq, char *sub_seq, int score_matrix[26][26], int 
             {
                 if (i < mutant_idx)
                 {
-                    *score += score_matrix[sub_seq[i] - 'A'][main_seq[offset_idx + i] - 'A'];
+                    *score += score_matrix[main_seq[offset_idx + i] - 'A'][sub_seq[i] - 'A'];
                 }
                 else
                 {
-                    *score += score_matrix[mutant_char(sub_seq[i]) - 'A'][main_seq[offset_idx + i] - 'A'];
+                    *score += score_matrix[main_seq[offset_idx + i] - 'A'][mutant_char(sub_seq[i]) - 'A'];
                 }
             }
             if (*score > best_score)
@@ -162,5 +162,7 @@ void sequential(int argc, char *argv[])
         int mutant;
         findBestScore(main_sequence, sub_sequences[i], score_matrix, &score, &offset, &mutant);
         printf("highest alignment score = %d offset = %d k = %d\n", score, offset, mutant);
+        free(sub_sequences[i]);
     }
+    free(sub_sequences);
 }
