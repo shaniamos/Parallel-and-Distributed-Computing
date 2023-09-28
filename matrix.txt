@@ -1,7 +1,1 @@
-./sequential 
-./sequential matrix.txt
-
-
-mpiexec -n 2 ./parallel < input.txt
-
-mpiexec -n 2 ./parallel < input.txt matrix.txt
+2 4 0 4 -1 2 7 5 5 1 4 9 1 2 3 4
