@@ -35,6 +35,8 @@ __global__ void findBestOffsetKernel(char *dev_main_seq, char *dev_sub_seq, int 
 
 void findBestOffsetCuda(char *dev_main_seq, char *dev_sub_seq, int *dev_score_matrix, int *dev_best_scores, int *best_score, int *best_offset, int *cuda_results, int mutant, int main_seq_len, int sub_seq_len)
 {
+    *best_score = -2147483648;
+    *best_offset = 0;
     int num_offsets = main_seq_len - sub_seq_len + 1;
     int num_blocks = (num_offsets + 256) / 256;
     findBestOffsetKernel<<<num_blocks, 256>>>(dev_main_seq, dev_sub_seq, (int(*)[26])dev_score_matrix, dev_best_scores, mutant, main_seq_len, sub_seq_len);

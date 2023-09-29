@@ -95,7 +95,7 @@ void findBestScore(char *main_seq, char *sub_seq, int score_matrix[26][26], int 
 #pragma omp parallel
     {
         int tid = omp_get_thread_num();
-        int tscore = 0;
+        int tscore;
         int temp_offset;
         int tbest_offset = 0;
         int tbest_mutant = 0;
@@ -260,8 +260,6 @@ void parallel(int argc, char *argv[], int rank, int num_procs)
     int score_matrix[26][26];
     int sub_sequences_count;
     bcastFileAndMatrix(rank, main_sequence, &sub_sequences, &sub_sequences_count, score_matrix, argc, argv);
-    int num_mutants = 0;
-    int total_score = 0;
     int *results = (int *)malloc(sub_sequences_count * sizeof(int) * 3);
     double start_time = MPI_Wtime();
     for (int i = 0; i < sub_sequences_count; i++)
