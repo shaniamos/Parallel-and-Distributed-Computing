@@ -1,5 +1,5 @@
-./sequential 
-./sequential matrix.txt
+./sequential < input.txt 
+./sequential < input.txt matrix.txt
 
 mpiexec -n 2 ./parallel < input.txt 
 mpiexec -n 2 ./parallel < input.txt matrix.txt

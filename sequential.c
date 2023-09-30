@@ -153,8 +153,6 @@ void sequential(int argc, char *argv[])
     int sub_sequences_count;
     readInputFile(main_sequence, &sub_sequences, &sub_sequences_count);
     init_score_matrix(score_matrix, argc, argv);
-    int num_mutants = 0;
-    int total_score = 0;
     for (int i = 0; i < sub_sequences_count; i++)
     {
         int score;

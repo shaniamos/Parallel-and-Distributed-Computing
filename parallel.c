@@ -8,8 +8,6 @@
 
 int main(int argc, char *argv[])
 {
-
-    double cpu_time_used;
     int rank, size;
     MPI_Init(&argc, &argv);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank); // get current process id
